@@ -1,6 +1,6 @@
-use std::io; // io is not a part of the prelude.
 use rand::Rng;
 use std::cmp::Ordering;
+use std::io; // io is not a part of the prelude.
 
 fn main() {
     println!("Guess the number");
@@ -13,21 +13,21 @@ fn main() {
         println!("Please input your guess.");
 
         let mut guess = String::new();
-    
-        io::stdin()  // std::io::stdin() without using use std::io.
+
+        io::stdin() // std::io::stdin() without using use std::io.
             .read_line(&mut guess)
             .expect("Failed to read line");
-    
+
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => {
                 println!("Please enter a number!");
                 continue;
             }
-       };
-           
+        };
+
         println!("You guessed: {guess}");
-    
+
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too Small!"),
             Ordering::Greater => println!("Too Big!"),
@@ -39,8 +39,6 @@ fn main() {
     }
 }
 
-
 // Rust variables are immutable by default.
 // let apples = 5; // immutable
 // let mut mangoes = 5; // mutable
-
